@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduCraft</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="social">
+            <a href="tel:98765xxxxx">
+                <i class="fa-solid fa-phone"></i>
+                <span>+91 98765xxxxx</span>
+            </a>
+            <a href="mailto:sderty@gmail.com">
+                <i class="fa-solid fa-envelope"></i>
+                <span>sderty@gmail.com</span>
+            </a>
+        </div>
+        <div class="login">
+            <a href="#" onclick="openLogin(); return false;">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span>Login</span>
+            </a>
+            <a href="#" onclick="openRegister(); return false;">
+                <i class="fa-solid fa-lock"></i>
+                <span>Register</span>
+            </a>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <!-- Hidden checkbox for toggling menu -->
+        <input type="checkbox" id="nav-toggle" aria-label="Toggle navigation menu" />
+
+        <div class="logo">
+            <img src="https://cdn2.iconfinder.com/data/icons/education-and-science-6/64/education_science_idea-512.png"
+                alt="EduCraft Logo" />
+            <a href="index.html" style="color: black;">EduCraft</a>
+        </div>
+
+        <label for="nav-toggle" class="hamburger" tabindex="0" aria-controls="nav-toggle" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="instructor.html">Instructors</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+
+        <div class="search-container">
+            <input type="text" placeholder="Search courses..." aria-label="Search courses" />
+        </div>
+
+        <!-- <div class="dropdown">
+            <select aria-label="Choose category">
+                <option value="">Categories</option>
+                <option value="development">Development</option>
+                <option value="design">Design</option>
+                <option value="marketing">Marketing</option>
+                <option value="business">Business</option>
+            </select>
+        </div> -->
+    </nav>
+
+    <main>
+        <div class="main-content">
+            <div class="intro-text">
+                <p class="subheading">EXPERT INSTRUCTION</p>
+                <h1>Convenient & Easy Way of Learning New Skills!</h1>
+                <p class="description">
+                    The ultimate planning solution for busy learners who want to reach their personal goals. Effortless,
+                    comfortable, eye-catching, and unique in detail.
+                </p>
+                <div class="buttons">
+                    <button class="btn primary" onclick="window.location.href='courses.html'">Our Courses</button>
+                    <button class="btn secondary" onclick="openRegister()">Sign Up</button>
+                </div>
+            </div>
+            <div class="banner-img">
+                <img src="https://img.freepik.com/free-vector/online-tutorials-concept_52683-37480.jpg" alt="Hero Image"
+                    class="img-fluid">
+            </div>
+        </div>
+    </main>
+
+    <!-- <section class="stats-section">
+        <div class="stat">
+            <h2>500+</h2>
+            <p>Courses</p>
+        </div>
+        <div class="stat">
+            <h2>10,000+</h2>
+            <p>Students</p>
+        </div>
+        <div class="stat">
+            <h2>4.9/5</h2>
+            <p>Average Rating</p>
+        </div>
+    </section> -->
+
+    <!-- overlay cards -->
+    <section class="overlay-cards">
+        <h2 class="section-title">Why Choose EduCraft?</h2>
+        <div class="cards">
+            <div class="card">
+                <i class="fa-solid fa-person-chalkboard"></i>
+                <h3>Expert Teacher</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <h3>Self Development</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-laptop-file"></i>
+                <h3>Remote Learning</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- courses -->
+    <section class="courses" id="courses">
+        <p class="subheading">TRENDING COURSES</p>
+        <div class="course">
+            <h2>Popular Courses near you</h2>
+            <button class="btn secondary" onclick="window.location.href='courses.html'">All Courses</button>
+        </div>
+
+        <div class="course-cards">
+            <div class="course-card">
+                <div class="badge">Beginner</div>
+                <div class="wishlist">❤</div>
+                <img src="https://i.ytimg.com/vi/7C4dv8vuwEk/maxresdefault.jpg" alt="Web Development"
+                    class="course-img">
+                <div class="price-tag">$19.00</div>
+                <div class="course-content">
+                    <h3>Introduction to Front-End Web Development</h3>
+                    <div class="rating">⭐ 4.8 <span>(28)</span></div>
+                    <div class="meta">
+                        <span>🕒 5 Hours</span>
+                        <span>👥 40 Students</span>
+                    </div>
+                    <div class="instructor">
+                        <img src="https://i.pravatar.cc/30?img=5" alt="Jackson">
+                        <span>By: Jackson</span>
+                    </div>
+                    <button class="btn-cart" onclick="window.location.href='cart.html'">🛒 Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="badge">All Levels</div>
+                <div class="wishlist">❤</div>
+                <img src="https://engineering.nyu.edu/sites/default/files/styles/content_header_default_1x/public/2022-02/Data%20Science%20Bootcamp%20%281%29.jpg?h=2f83cd36&itok=qIg5KFwK"
+                    alt="Data Science" class="course-img">
+                <div class="price-tag">$29.00</div>
+                <div class="course-content">
+                    <h3>Data Science & Machine Learning Bootcamp</h3>
+                    <div class="rating">⭐ 4.9 <span>(54)</span></div>
+                    <div class="meta">
+                        <span>🕒 12 Hours</span>
+                        <span>👥 95 Students</span>
+                    </div>
+                    <div class="instructor">
+                        <img src="https://i.pravatar.cc/30?img=7" alt="Anita">
+                        <span>By: Anita Kapoor</span>
+                    </div>
+                    <button class="btn-cart" onclick="window.location.href='cart.html'">🛒 Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="badge">Intermediate</div>
+                <div class="wishlist">❤</div>
+                <img src="https://www.htmedia.in/wp-content/uploads/2024/02/5-Growth-Marketing-Strategies-for-2024.png"
+                    alt="Digital Marketing" class="course-img">
+                <div class="price-tag">$22.00</div>
+                <div class="course-content">
+                    <h3>Digital Marketing Strategies for Growth</h3>
+                    <div class="rating">⭐ 4.7 <span>(33)</span></div>
+                    <div class="meta">
+                        <span>🕒 6.5 Hours</span>
+                        <span>👥 78 Students</span>
+                    </div>
+                    <div class="instructor">
+                        <img src="https://i.pravatar.cc/30?img=10" alt="Lena">
+                        <span>By: Lena Morris</span>
+                    </div>
+                    <button class="btn-cart" onclick="window.location.href='cart.html'">🛒 Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="badge">Advanced</div>
+                <div class="wishlist">❤</div>
+                <img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/themes/2152850034/settings_images/bd1a8e6-be21-54c-037-751f3a481fdc_d9290988-8c67-4737-b67c-6d2cdeab3647.jpg"
+                    alt="Backend" class="course-img">
+                <div class="price-tag">$35.00</div>
+                <div class="course-content">
+                    <h3>Mastering Node.js & RESTful APIs</h3>
+                    <div class="rating">⭐ 5.0 <span>(18)</span></div>
+                    <div class="meta">
+                        <span>🕒 9 Hours</span>
+                        <span>👥 60 Students</span>
+                    </div>
+                    <div class="instructor">
+                        <img src="https://i.pravatar.cc/30?img=2" alt="Marco">
+                        <span>By: Marco Vieira</span>
+                    </div>
+                    <button class="btn-cart" onclick="window.location.href='cart.html'">🛒 Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="badge">Beginner</div>
+                <div class="wishlist">❤</div>
+                <img src="https://content-management-files.canva.com/5fdcfd92-e462-401e-9653-1f0ab4cbecba/graphic-design-basics-course-mobile.png"
+                    alt="Graphic Design" class="course-img">
+                <div class="price-tag">$18.00</div>
+                <div class="course-content">
+                    <h3>Graphic Design Essentials with Canva</h3>
+                    <div class="rating">⭐ 4.6 <span>(41)</span></div>
+                    <div class="meta">
+                        <span>🕒 4.5 Hours</span>
+                        <span>👥 30 Students</span>
+                    </div>
+                    <div class="instructor">
+                        <img src="https://i.pravatar.cc/30?img=12" alt="Emily">
+                        <span>By: Emily Ray</span>
+                    </div>
+                    <button class="btn-cart" onclick="window.location.href='cart.html'">🛒 Add To Cart</button>
+                </div>
+            </div>
+
+            <div class="course-card">
+                <div class="badge">All Levels</div>
+                <div class="wishlist">❤</div>
+                <img src="https://ebizfiling.com/wp-content/uploads/2023/04/Importance-of-a-Business-Plan-1.jpg"
+                    alt="Business" class="course-img">
+                <div class="price-tag">$27.00</div>
+                <div class="course-content">
+                    <h3>Entrepreneurship & Business Planning</h3>
+                    <div class="rating">⭐ 4.9 <span>(39)</span></div>
+                    <div class="meta">
+                        <span>🕒 8 Hours</span>
+                        <span>👥 85 Students</span>
+                    </div>
+                    <div class="instructor">
+                        <img src="https://i.pravatar.cc/30?img=14" alt="Daniel">
+                        <span>By: Daniel Kim</span>
+                    </div>
+                    <button class="btn-cart" onclick="window.location.href='cart.html'">🛒 Add To Cart</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- register.html -->
+    <section class="registration-section">
+        <div class="main-content">
+            <div class="intro-text">
+                <h1>Register Your Account</h1>
+                <p class="description">
+                    Get free access to 60,000+ online courses. Learn something new & build your career from anywhere in
+                    the world.
+                </p>
+            </div>
+            <!-- <div class="registration-form">
+      <h3>Fill Your Registration</h3>
+      <form>
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" />
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" />
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" />
+        </div>
+        <div class="form-group">
+          <label>Address</label>
+          <textarea></textarea>
+        </div>
+        <div class="form-group">
+          <label>Comment</label>
+          <textarea></textarea>
+        </div>
+        <button class="btn primary" type="submit">Sign Up</button>
+      </form>
+    </div> -->
+        </div>
+        <button class="btn primary" onclick="openRegister()"> Sign Up</button>
+
+    </section>
+
+    <!-- testimonials -->
+    <section class="testimonials-section" id="testimonial">
+        <h2 class="section-title">Trusted by Learners Worldwide</h2>
+        <p class="description">Hear from students who have upskilled and succeeded through EduCraft's courses.</p>
+
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Emily">
+                <h3>Emily Parker</h3>
+                <p>"The web development course was incredibly comprehensive. I landed a freelance job just weeks after
+                    finishing!"</p>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                        class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <img src="https://randomuser.me/api/portraits/men/51.jpg" alt="James">
+                <h3>James Wilson</h3>
+                <p>"Great value for money and truly beginner-friendly. I loved the real-world projects and the support
+                    team was excellent."</p>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                        class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Priya">
+                <h3>Priya Singh</h3>
+                <p>"I’ve taken multiple courses here and the quality never disappoints. Definitely helped me shift
+                    careers."</p>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                        class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Carlos">
+                <h3>Carlos Mendoza</h3>
+                <p>"Thanks to EduCraft’s Data Science track, I passed my interview at a top tech company. Highly
+                    recommend!"</p>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                        class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="custom-footer">
+        <div class="footer-top">
+            <div class="footer-section brand">
+                <h2>EduCraft<span class="dot">.</span></h2>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="instructor.html">Mentors</a></li>
+                    <!-- <li><a href="#">Group</a></li> -->
+                    <li><a href="#testimonial">Testimonial</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Other</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html#team">Our Team</a></li>
+                    <li><a href="#courses">Popular Courses</a></li>
+                    <li><a href="about.html#features">Our Features</a></li>
+                    <li><a href="cart.html">Purchased courses</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact">
+                <p>
+                    <a href="tel:98765xxxxx">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+91 98765xxxxx</span>
+                    </a>
+                    <a href="mailto:sderty@gmail.com">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>sderty@gmail.com</span>
+                    </a>
+                    <a>
+                        <i class="fa-solid fa-map-pin"></i>
+                        <span>123 Education Street, Learning City, LC 56789</span>
+                    </a>
+                </p>
+                <!-- <p><i class="fa-solid fa-map-pin"></i> 925 Filbert Street Pennsylvania 18072</p>
+                <p><i class="fa-solid fa-phone"></i> +45 3411–4411</p>
+                <p><i class="fa-solid fa-envelope"></i> info@gmail.com</p> -->
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>©2025. All Rights Reserved</p>
+            <!-- <div class="footer-links">
+                <a href="#">Privacy policy</a>
+                <a href="#">Terms & conditions</a>
+                <a href="#">Distributed by ThemeWagon</a>
+            </div> -->
+        </div>
+    </footer>
+
+    
+    <!-- Register Popup -->
+    <div class="register-popup" id="registerPopup">
+        <div class="register-container">
+            <span class="close-btn" onclick="closeRegister()">&times;</span>
+            <h2>Create an Account</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" required placeholder="Create a password">
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" required placeholder="Confirm your password">
+                </div>
+                <div class="form-options">
+                    <label>
+                        <input type="checkbox" required> I agree to the <a href="#">terms and conditions</a>
+                    </label>
+                </div>
+                <button type="submit" class="btn primary">Register</button>
+                <div class="login-link">
+                    Already have an account? <a href="#" onclick="switchToLogin()">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Popup -->
+    <div class="login-popup" id="loginPopup">
+        <div class="login-container">
+            <span class="close-btn" onclick="closeLogin()">&times;</span>
+            <h2>Login to EduCraft</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required placeholder="Enter your password">
+                </div>
+                <div class="form-options">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn primary" style="width: 100%;">Login</button>
+                <div class="signup-link">
+                    Don't have an account? <a href="#" onclick="switchToRegister()">Sign up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to open register popup
+        function openRegister() {
+            document.getElementById('registerPopup').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        // Function to close register popup
+        function closeRegister() {
+            document.getElementById('registerPopup').classList.remove('active');
+            document.body.style.overflow = 'auto'; // Enable scrolling
+        }
+
+        // Function to switch from register to login
+        function switchToLogin() {
+            closeRegister();
+            openLogin();
+        }
+        function switchToRegister() {
+            closeLogin();
+            openRegister();
+        }
+
+        // Close popup when clicking outside
+        document.getElementById('registerPopup').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeRegister();
+            }
+        });
+
+        // Function to open login popup
+        function openLogin() {
+            document.getElementById('loginPopup').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        // Function to close login popup
+        function closeLogin() {
+            document.getElementById('loginPopup').classList.remove('active');
+            document.body.style.overflow = 'auto'; // Enable scrolling
+        }
+
+        // Close popup when clicking outside
+        document.getElementById('loginPopup').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeLogin();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

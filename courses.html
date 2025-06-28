@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - EduCraft</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Courses Hero Section */
+        .courses-hero {
+            background: linear-gradient(rgba(72, 61, 139, 0.8), rgba(72, 61, 139, 0.8)),
+                url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 5%;
+            text-align: center;
+        }
+
+        .courses-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .breadcrumb a {
+            color: white;
+            margin: 0 10px;
+        }
+
+        .breadcrumb span {
+            color: #ccc;
+        }
+
+        /* Courses Container */
+        .courses-container {
+            padding: 40px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .courses-main {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .course-header h2 {
+            font-size: 2rem;
+            color: #333;
+            margin: 0;
+        }
+
+        .course-filters {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border-radius: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: darkslateblue;
+            color: white;
+            border-color: darkslateblue;
+        }
+
+        .course-card-container {
+            height: 90vh;
+            overflow-y: auto;
+            padding: 0.5rem;
+        }
+
+        .course-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .course-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-card img{
+            width: 100%;
+            padding: 0.5rem;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: darkslateblue;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .wishlist {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.2rem;
+            color: red;
+            cursor: pointer;
+            z-index: 2;
+            background: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .course-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .price-tag {
+            position: absolute;
+            bottom: 40%;
+            right: 10px;
+            background-color: #30cb7b;
+            color: #333;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .course-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: #333;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 0.8rem;
+            color: #555;
+        }
+
+        .rating span {
+            color: #888;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 0.8rem;
+        }
+
+        .instructor {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .instructor img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .btn-cart {
+            width: 100%;
+            padding: 10px;
+            background-color: darkslateblue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: auto;
+        }
+
+        /* Categories Sidebar */
+        .categories-sidebar {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            height: fit-content;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            min-width: 250px;
+        }
+
+        .categories-sidebar h3 {
+            color: darkslateblue;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 0.8rem;
+        }
+
+        .category-list a {
+            color: #555;
+            transition: color 0.3s ease;
+            display: block;
+            padding: 5px 0;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+
+        .btn.secondary {
+            background-color: white;
+            color: darkslateblue;
+            border: 0.5px solid darkslateblue;
+        }
+
+        /* Media Queries */
+        @media (max-width: 1020px) {
+            .courses-main {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .courses-content{
+                width: 100%;
+            }
+
+            .course-cards {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 2fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .courses-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .course-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .course-filters {
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+
+        }
+
+        @media (min-width: 992px) {
+
+            .courses-content{
+                width: 90%;
+            }
+            .categories-sidebar {
+                display: block;
+            }
+        }
+
+        @media (max-width: 576px) {
+            /* .course-cards {
+                grid-template-columns: 1fr;
+            } */
+
+            .pagination {
+                gap: 8px;
+            }
+
+            .page-btn {
+                width: 35px;
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+     <nav class="navbar">
+        <!-- Hidden checkbox for toggling menu -->
+        <input type="checkbox" id="nav-toggle" aria-label="Toggle navigation menu" />
+
+        <div class="logo">
+            <img src="https://cdn2.iconfinder.com/data/icons/education-and-science-6/64/education_science_idea-512.png"
+                alt="EduCraft Logo" />
+            <a href="index.html" style="color: black;">EduCraft</a>
+        </div>
+
+        <label for="nav-toggle" class="hamburger" tabindex="0" aria-controls="nav-toggle" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="instructor.html">Instructors</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+
+        <div class="search-container">
+            <input type="text" placeholder="Search courses..." aria-label="Search courses" />
+        </div>
+
+        <!-- <div class="dropdown">
+            <select aria-label="Choose category">
+                <option value="">Categories</option>
+                <option value="development">Development</option>
+                <option value="design">Design</option>
+                <option value="marketing">Marketing</option>
+                <option value="business">Business</option>
+            </select>
+        </div> -->
+    </nav>
+
+    <!-- Courses Hero Section -->
+    <section class="courses-hero">
+        <h1>Explore Our Courses</h1>
+        <p class="description">Browse through hundreds of courses to find the perfect one for your learning journey</p>
+        <div class="breadcrumb">
+            <a href="#">Home</a>
+            <span>/</span>
+            <a href="#">Courses</a>
+        </div>
+    </section>
+
+    <!-- Main Courses Section -->
+    <section class="courses-container">
+        <div class="courses-main">
+            <!-- Categories Sidebar (visible on larger screens) -->
+            <aside class="categories-sidebar">
+                <h3>Categories</h3>
+                <ul class="category-list">
+                    <li><a href="#" class="active">All Categories</a></li>
+                    <li><a href="#">Web Development</a></li>
+                    <li><a href="#">Data Science</a></li>
+                    <!-- <li><a href="#">Digital Marketing</a></li> -->
+                    <!-- <li><a href="#">Graphic Design</a></li> -->
+                    <li><a href="#">Business</a></li>
+                    <li><a href="#">Mobile Development</a></li>
+                    <!-- <li><a href="#">UX/UI Design</a></li> -->
+                    <!-- <li><a href="#">Photography</a></li> -->
+                    <!-- <li><a href="#">Perso      nal Development</a></li> -->
+                </ul>
+
+                <h3 style="margin-top: 2rem;">Filter by Level</h3>
+                <ul class="category-list">
+                    <li><a href="#">All Levels</a></li>
+                    <li><a href="#">Beginner</a></li>
+                    <li><a href="#">Intermediate</a></li>
+                    <li><a href="#">Advanced</a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Courses Content -->
+            <div class="courses-content">
+                <div class="course-header">
+                    <h2>All Courses</h2>
+                    <div class="course-filters">
+                        <button class="filter-btn active">All</button>
+                        <button class="filter-btn">Popular</button>
+                        <button class="filter-btn">Newest</button>
+                        <button class="filter-btn">Highest Rated</button>
+                        <button class="filter-btn">Free</button>
+                    </div>
+                </div>
+
+                <div class="course-card-container">
+                    <div class="course-cards">
+                        <!-- Course Card 1 -->
+                        <div class="course-card">
+                            <div class="badge">Beginner</div>
+                            <div class="wishlist">❤</div>
+                            <img src="https://i.ytimg.com/vi/7C4dv8vuwEk/maxresdefault.jpg" alt="Web Development"
+                                class="course-img">
+                            <div class="price-tag">$19.00</div>
+                            <div class="course-content">
+                                <h3>Introduction to Front-End Web Development</h3>
+                                <div class="rating">⭐ 4.8 <span>(28)</span></div>
+                                <div class="meta">
+                                    <span>🕒 5 Hours</span>
+                                    <span>👥 40 Students</span>
+                                </div>
+                                <div class="instructor">
+                                    <img src="https://i.pravatar.cc/30?img=5" alt="Jackson">
+                                    <span>By: Jackson</span>
+                                </div>
+                                <button class="btn-cart" onclick="window.location.href='cart.html'">🛒 Add To Cart</button>
+                            </div>
+                        </div>
+
+                        <!-- Course Card 2 -->
+                        <div class="course-card">
+                            <div class="badge">All Levels</div>
+                            <div class="wishlist">❤</div>
+                            <img src="https://engineering.nyu.edu/sites/default/files/styles/content_header_default_1x/public/2022-02/Data%20Science%20Bootcamp%20%281%29.jpg?h=2f83cd36&itok=qIg5KFwK"
+                                alt="Data Science" class="course-img">
+                            <div class="price-tag">$29.00</div>
+                            <div class="course-content">
+                                <h3>Data Science & Machine Learning Bootcamp</h3>
+                                <div class="rating">⭐ 4.9 <span>(54)</span></div>
+                                <div class="meta">
+                                    <span>🕒 12 Hours</span>
+                                    <span>👥 95 Students</span>
+                                </div>
+                                <div class="instructor">
+                                    <img src="https://i.pravatar.cc/30?img=7" alt="Anita">
+                                    <span>By: Anita Kapoor</span>
+                                </div>
+                                 <button class="btn-cart" onclick="window.location.href='cart.html'">🛒 Add To Cart</button>
+                            </div>
+                        </div>
+
+                        <!-- Course Card 3 -->
+                        <div class="course-card">
+                            <div class="badge">Intermediate</div>
+                            <div class="wishlist">❤</div>
+                            <img src="https://www.htmedia.in/wp-content/uploads/2024/02/5-Growth-Marketing-Strategies-for-2024.png"
+                                alt="Digital Marketing" class="course-img">
+                            <div class="price-tag">$22.00</div>
+                            <div class="course-content">
+                                <h3>Digital Marketing Strategies for Growth</h3>
+                                <div class="rating">⭐ 4.7 <span>(33)</span></div>
+                                <div class="meta">
+                                    <span>🕒 6.5 Hours</span>
+                                    <span>👥 78 Students</span>
+                                </div>
+                                <div class="instructor">
+                                    <img src="https://i.pravatar.cc/30?img=10" alt="Lena">
+                                    <span>By: Lena Morris</span>
+                                </div>
+                                 <button class="btn-cart" onclick="window.location.href='cart.html'">🛒 Add To Cart</button>
+                            </div>
+                        </div>
+
+                        <!-- Course Card 4 -->
+                        <div class="course-card">
+                            <div class="badge">Advanced</div>
+                            <div class="wishlist">❤</div>
+                            <img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/themes/2152850034/settings_images/bd1a8e6-be21-54c-037-751f3a481fdc_d9290988-8c67-4737-b67c-6d2cdeab3647.jpg"
+                                alt="Backend" class="course-img">
+                            <div class="price-tag">$35.00</div>
+                            <div class="course-content">
+                                <h3>Mastering Node.js & RESTful APIs</h3>
+                                <div class="rating">⭐ 5.0 <span>(18)</span></div>
+                                <div class="meta">
+                                    <span>🕒 9 Hours</span>
+                                    <span>👥 60 Students</span>
+                                </div>
+                                <div class="instructor">
+                                    <img src="https://i.pravatar.cc/30?img=2" alt="Marco">
+                                    <span>By: Marco Vieira</span>
+                                </div>
+                                 <button class="btn-cart" onclick="window.location.href='cart.html'">🛒 Add To Cart</button>
+                            </div>
+                        </div>
+
+                        <!-- Course Card 5 -->
+                        <div class="course-card">
+                            <div class="badge">Beginner</div>
+                            <div class="wishlist">❤</div>
+                            <img src="https://content-management-files.canva.com/5fdcfd92-e462-401e-9653-1f0ab4cbecba/graphic-design-basics-course-mobile.png"
+                                alt="Graphic Design" class="course-img">
+                            <div class="price-tag">$18.00</div>
+                            <div class="course-content">
+                                <h3>Graphic Design Essentials with Canva</h3>
+                                <div class="rating">⭐ 4.6 <span>(41)</span></div>
+                                <div class="meta">
+                                    <span>🕒 4.5 Hours</span>
+                                    <span>👥 30 Students</span>
+                                </div>
+                                <div class="instructor">
+                                    <img src="https://i.pravatar.cc/30?img=12" alt="Emily">
+                                    <span>By: Emily Ray</span>
+                                </div>
+                                 <button class="btn-cart" onclick="window.location.href='cart.html'">🛒 Add To Cart</button>
+                            </div>
+                        </div>
+
+                        <!-- Course Card 6 -->
+                        <div class="course-card">
+                            <div class="badge">All Levels</div>
+                            <div class="wishlist">❤</div>
+                            <img src="https://ebizfiling.com/wp-content/uploads/2023/04/Importance-of-a-Business-Plan-1.jpg"
+                                alt="Business" class="course-img">
+                            <div class="price-tag">$27.00</div>
+                            <div class="course-content">
+                                <h3>Entrepreneurship & Business Planning</h3>
+                                <div class="rating">⭐ 4.9 <span>(39)</span></div>
+                                <div class="meta">
+                                    <span>🕒 8 Hours</span>
+                                    <span>👥 85 Students</span>
+                                </div>
+                                <div class="instructor">
+                                    <img src="https://i.pravatar.cc/30?img=14" alt="Daniel">
+                                    <span>By: Daniel Kim</span>
+                                </div>
+                                 <button class="btn-cart" onclick="window.location.href='cart.html'">🛒 Add To Cart</button>
+                            </div>
+                        </div>
+
+                        <!-- Course Card 7 -->
+                        <div class="course-card">
+                            <div class="badge">Beginner</div>
+                            <div class="wishlist">❤</div>
+                            <img src="https://img-c.udemycdn.com/course/240x135/6410211_66a3_5.jpg"
+                                alt="Python" class="course-img">
+                            <div class="price-tag">$24.00</div>
+                            <div class="course-content">
+                                <h3>Python Programming for Beginners</h3>
+                                <div class="rating">⭐ 4.8 <span>(62)</span></div>
+                                <div class="meta">
+                                    <span>🕒 7 Hours</span>
+                                    <span>👥 120 Students</span>
+                                </div>
+                                <div class="instructor">
+                                    <img src="https://i.pravatar.cc/30?img=8" alt="Raj">
+                                    <span>By: Raj Patel</span>
+                                </div>
+                                 <button class="btn-cart" onclick="window.location.href='cart.html'">🛒 Add To Cart</button>
+                            </div>
+                        </div>
+
+                        <!-- Course Card 8 -->
+                        <div class="course-card">
+                            <div class="badge">Intermediate</div>
+                            <div class="wishlist">❤</div>
+                            <img src="https://miro.medium.com/v2/resize:fit:1200/0*vc4LVhHM3tH-2Sfh.jpg"
+                                alt="React" class="course-img">
+                            <div class="price-tag">$31.00</div>
+                            <div class="course-content">
+                                <h3>React JS: From Basics to Advanced</h3>
+                                <div class="rating">⭐ 4.9 <span>(47)</span></div>
+                                <div class="meta">
+                                    <span>🕒 10 Hours</span>
+                                    <span>👥 92 Students</span>
+                                </div>
+                                <div class="instructor">
+                                    <img src="https://i.pravatar.cc/30?img=9" alt="Sophia">
+                                    <span>By: Sophia Chen</span>
+                                </div>
+                                 <button class="btn-cart" onclick="window.location.href='cart.html'">🛒 Add To Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <div class="page-btn"><i class="fas fa-chevron-left"></i></div>
+                    <div class="page-btn active">1</div>
+                    <div class="page-btn">2</div>
+                    <div class="page-btn">3</div>
+                    <div class="page-btn">4</div>
+                    <div class="page-btn"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <footer class="custom-footer">
+        <div class="footer-top">
+            <div class="footer-section brand">
+                <h2>EduCraft<span class="dot">.</span></h2>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="instructor.html">Mentors</a></li>
+                    <!-- <li><a href="#">Group</a></li> -->
+                    <li><a href="#testimonial">Testimonial</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Other</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html#team">Our Team</a></li>
+                    <li><a href="#courses">Popular Courses</a></li>
+                    <li><a href="about.html#features">Our Features</a></li>
+                    <li><a href="cart.html">Purchased courses</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact">
+                <p>
+                    <a href="tel:98765xxxxx">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+91 98765xxxxx</span>
+                    </a>
+                    <a href="mailto:sderty@gmail.com">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>sderty@gmail.com</span>
+                    </a>
+                    <a>
+                        <i class="fa-solid fa-map-pin"></i>
+                        <span>123 Education Street, Learning City, LC 56789</span>
+                    </a>
+                </p>
+                <!-- <p><i class="fa-solid fa-map-pin"></i> 925 Filbert Street Pennsylvania 18072</p>
+                <p><i class="fa-solid fa-phone"></i> +45 3411–4411</p>
+                <p><i class="fa-solid fa-envelope"></i> info@gmail.com</p> -->
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>©2025. All Rights Reserved</p>
+            <!-- <div class="footer-links">
+                <a href="#">Privacy policy</a>
+                <a href="#">Terms & conditions</a>
+                <a href="#">Distributed by ThemeWagon</a>
+            </div> -->
+        </div>
+    </footer>
+</body>
+
+</html>

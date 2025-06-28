@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - EduCraft</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Cart Page Specific Styles */
+        .cart-hero {
+            background: linear-gradient(rgba(72, 61, 139, 0.8), rgba(72, 61, 139, 0.8));
+            color: white;
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .cart-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 5%;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .cart-items {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 100px 1fr auto;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-img {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .cart-item-details h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .cart-item-details p {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .cart-item-price {
+            font-weight: bold;
+            color: darkslateblue;
+            text-align: right;
+        }
+
+        .cart-item-remove {
+            color: #ff4444;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .cart-summary {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            align-self: start;
+            position: sticky;
+            top: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-row.total {
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-bottom: none;
+            margin-top: 20px;
+            color: darkslateblue;
+        }
+
+        .coupon-input {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .coupon-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .empty-cart i {
+            font-size: 3rem;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .continue-shopping {
+            display: inline-block;
+            margin-top: 30px;
+            color: darkslateblue;
+            font-weight: 500;
+        }
+
+        @media (max-width: 992px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+                padding: 40px 5%;
+            }
+
+            .cart-summary {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cart-hero {
+                padding: 60px 5%;
+            }
+
+            .cart-item {
+                grid-template-columns: 80px 1fr;
+                grid-template-rows: auto auto auto;
+                gap: 37px;
+            }
+
+            .cart-item-price {
+                grid-column: 2;
+                text-align: left;
+                margin-top: 5px;
+            }
+
+            .cart-item-remove {
+                grid-column: 2;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .cart-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .cart-hero p {
+                font-size: 1rem;
+            }
+
+            .cart-item {
+                grid-template-columns: 60px 1fr;
+                gap: 10px;
+                padding: 15px 0;
+            }
+
+            .cart-item-img {
+                width: 60px;
+                height: 50px;
+            }
+
+            .cart-item-details h3 {
+                font-size: 1rem;
+            }
+
+            .coupon-input {
+                flex-direction: column;
+            }
+
+            .coupon-input button {
+                width: 100%;
+            }
+
+            .btn.secondary{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+     <nav class="navbar">
+        <!-- Hidden checkbox for toggling menu -->
+        <input type="checkbox" id="nav-toggle" aria-label="Toggle navigation menu" />
+
+        <div class="logo">
+            <img src="https://cdn2.iconfinder.com/data/icons/education-and-science-6/64/education_science_idea-512.png"
+                alt="EduCraft Logo" />
+            <a href="index.html" style="color: black;">EduCraft</a>
+        </div>
+
+        <label for="nav-toggle" class="hamburger" tabindex="0" aria-controls="nav-toggle" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="instructor.html">Instructors</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+
+        <div class="search-container">
+            <input type="text" placeholder="Search courses..." aria-label="Search courses" />
+        </div>
+
+        <!-- <div class="dropdown">
+            <select aria-label="Choose category">
+                <option value="">Categories</option>
+                <option value="development">Development</option>
+                <option value="design">Design</option>
+                <option value="marketing">Marketing</option>
+                <option value="business">Business</option>
+            </select>
+        </div> -->
+    </nav>
+
+    <!-- Cart Hero Section -->
+    <section class="cart-hero">
+        <h1>Your Shopping Cart</h1>
+        <p style="max-width: 600px; margin: 0 auto; font-size: 1.1rem;">Review your selected courses before checkout</p>
+    </section>
+
+    <!-- Main Cart Section -->
+    <section class="cart-container">
+        <!-- Cart Items -->
+        <div class="cart-items">
+            <h2 class="section-title">Your Courses (3)</h2>
+
+            <!-- Cart Item 1 -->
+            <div class="cart-item">
+                <img src="https://i.ytimg.com/vi/7C4dv8vuwEk/maxresdefault.jpg" alt="Web Development"
+                    class="cart-item-img">
+                <div class="cart-item-details">
+                    <h3>Introduction to Front-End Web Development</h3>
+                    <p>By: Jackson</p>
+                    <span class="cart-item-remove"><i class="fas fa-trash-alt"></i> Remove</span>
+                </div>
+                <div class="cart-item-price">$19.00</div>
+            </div>
+
+            <!-- Cart Item 2 -->
+            <div class="cart-item">
+                <img src="https://engineering.nyu.edu/sites/default/files/styles/content_header_default_1x/public/2022-02/Data%20Science%20Bootcamp%20%281%29.jpg?h=2f83cd36&itok=qIg5KFwK"
+                    alt="Data Science" class="cart-item-img">
+                <div class="cart-item-details">
+                    <h3>Data Science & Machine Learning Bootcamp</h3>
+                    <p>By: Anita Kapoor</p>
+                    <span class="cart-item-remove"><i class="fas fa-trash-alt"></i> Remove</span>
+                </div>
+                <div class="cart-item-price">$29.00</div>
+            </div>
+
+            <!-- Cart Item 3 -->
+            <div class="cart-item">
+                <img src="https://www.htmedia.in/wp-content/uploads/2024/02/5-Growth-Marketing-Strategies-for-2024.png"
+                    alt="Digital Marketing" class="cart-item-img">
+                <div class="cart-item-details">
+                    <h3>Digital Marketing Strategies for Growth</h3>
+                    <p>By: Lena Morris</p>
+                    <span class="cart-item-remove"><i class="fas fa-trash-alt"></i> Remove</span>
+                </div>
+                <div class="cart-item-price">$22.00</div>
+            </div>
+
+            <!-- Empty Cart State (hidden by default) -->
+            <!-- <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <h3>Your cart is empty</h3>
+                <p>Browse our courses and start learning today!</p>
+                <a href="courses.html" class="btn primary">Explore Courses</a>
+            </div> -->
+        </div>
+
+        <!-- Order Summary -->
+        <div class="cart-summary">
+            <h2 class="section-title">Order Summary</h2>
+
+            <div class="summary-row">
+                <span>Subtotal (3 items)</span>
+                <span>$70.00</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Discount</span>
+                <span>-$10.00</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Tax</span>
+                <span>$4.20</span>
+            </div>
+
+            <div class="coupon-input">
+                <input type="text" placeholder="Enter coupon code">
+                <button class="btn secondary" style="padding: 10px 15px;">Apply</button>
+            </div>
+
+            <div class="summary-row total">
+                <span>Total</span>
+                <span>$64.20</span>
+            </div>
+
+            <button class="btn primary" style="width: 100%; margin-top: 20px;">Proceed to Checkout</button>
+
+            <a href="courses.html" class="continue-shopping">
+                <i class="fas fa-arrow-left"></i> Continue Shopping
+            </a>
+        </div>
+    </section>
+
+    <footer class="custom-footer">
+        <div class="footer-top">
+            <div class="footer-section brand">
+                <h2>EduCraft<span class="dot">.</span></h2>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="instructor.html">Mentors</a></li>
+                    <!-- <li><a href="#">Group</a></li> -->
+                    <li><a href="#testimonial">Testimonial</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Other</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html#team">Our Team</a></li>
+                    <li><a href="#courses">Popular Courses</a></li>
+                    <li><a href="about.html#features">Our Features</a></li>
+                    <li><a href="cart.html">Purchased courses</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact">
+                <p>
+                    <a href="tel:98765xxxxx">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+91 98765xxxxx</span>
+                    </a>
+                    <a href="mailto:sderty@gmail.com">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>sderty@gmail.com</span>
+                    </a>
+                    <a>
+                        <i class="fa-solid fa-map-pin"></i>
+                        <span>123 Education Street, Learning City, LC 56789</span>
+                    </a>
+                </p>
+                <!-- <p><i class="fa-solid fa-map-pin"></i> 925 Filbert Street Pennsylvania 18072</p>
+                <p><i class="fa-solid fa-phone"></i> +45 3411–4411</p>
+                <p><i class="fa-solid fa-envelope"></i> info@gmail.com</p> -->
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>©2025. All Rights Reserved</p>
+            <!-- <div class="footer-links">
+                <a href="#">Privacy policy</a>
+                <a href="#">Terms & conditions</a>
+                <a href="#">Distributed by ThemeWagon</a>
+            </div> -->
+        </div>
+    </footer>
+</body>
+
+</html>

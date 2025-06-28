@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - EduCraft</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* About Page Specific Styles */
+        .hero-about {
+            background: linear-gradient(rgba(72, 61, 139, 0.8), rgba(72, 61, 139, 0.8)),
+                url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 5%;
+            text-align: center;
+        }
+
+        .hero-about h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .breadcrumb a {
+            color: white;
+            margin: 0 10px;
+        }
+
+        .breadcrumb span {
+            color: #ccc;
+        }
+
+        .about-content {
+            padding: 80px 5%;
+            background-color: #f4f4f9;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1 1 500px;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            color: darkslateblue;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        .about-image {
+            flex: 1 1 500px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .btnwrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn.primary {
+            width: 280px;
+            margin: auto;
+        }
+
+        .features {
+            padding: 80px 5%;
+            background-color: white;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background-color: #f4f4f9;
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .description,
+        .subheading {
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: darkslateblue;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: darkslateblue;
+        }
+
+        .team {
+            padding: 80px 5%;
+            background-color: #f4f4f9;
+        }
+
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .team-member {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .team-member:hover{
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .team-member img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .member-info {
+            padding: 25px 20px;
+        }
+
+        .member-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: darkslateblue;
+        }
+
+        .member-info p {
+            color: #777;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: darkslateblue;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #483D8B;
+        }
+
+        .stats {
+            padding: 80px 5%;
+            background: linear-gradient(rgba(72, 61, 139, 0.9), rgba(72, 61, 139, 0.9));
+            color: white;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .hero-about h1 {
+                font-size: 2.2rem;
+            }
+
+            .about-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .about-text,
+            .about-image {
+                flex: unset;
+                width: 100%;
+            }
+
+            .btn.primary {
+                width: 40%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <!-- Hidden checkbox for toggling menu -->
+        <input type="checkbox" id="nav-toggle" aria-label="Toggle navigation menu" />
+
+        <div class="logo">
+            <img src="https://cdn2.iconfinder.com/data/icons/education-and-science-6/64/education_science_idea-512.png"
+                alt="EduCraft Logo" />
+            <a href="index.html" style="color: black;">EduCraft</a>
+        </div>
+
+        <label for="nav-toggle" class="hamburger" tabindex="0" aria-controls="nav-toggle" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="instructor.html">Instructors</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+
+        <div class="search-container">
+            <input type="text" placeholder="Search courses..." aria-label="Search courses" />
+        </div>
+
+        <!-- <div class="dropdown">
+            <select aria-label="Choose category">
+                <option value="">Categories</option>
+                <option value="development">Development</option>
+                <option value="design">Design</option>
+                <option value="marketing">Marketing</option>
+                <option value="business">Business</option>
+            </select>
+        </div> -->
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-about">
+        <h1>About EduCraft</h1>
+        <p class="description">Empowering learners worldwide with quality education</p>
+        <div class="breadcrumb">
+            <a href="#">Home</a>
+            <span>/</span>
+            <a href="#">About Us</a>
+        </div>
+    </section>
+
+    <!-- About Content Section -->
+    <section class="about-content">
+        <div class="about-container">
+            <div class="about-text">
+                <p class="subheading">OUR STORY</p>
+                <h2>Transforming Education Through Innovation</h2>
+                <p>Founded in 2015, EduCraft began with a simple mission: to make quality education accessible to
+                    everyone, everywhere. What started as a small team of passionate educators has grown into a global
+                    learning platform serving over 100,000 students worldwide.</p>
+                <p>We believe that learning should be engaging, flexible, and tailored to individual needs. Our
+                    innovative approach combines cutting-edge technology with proven teaching methodologies to create an
+                    unparalleled learning experience.</p>
+                <p>At EduCraft, we're not just teaching skills - we're helping people transform their lives through
+                    education. Our courses are designed to be practical, relevant, and immediately applicable in
+                    real-world scenarios.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                    alt="EduCraft Team">
+            </div>
+            <div class="btnwrapper">
+                <button class="btn primary" style="margin-top: 20px;" onclick="window.location.href='courses.html'">Explore Our Courses</button>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <p class="subheading">WHY CHOOSE US</p>
+            <h2 class="section-title">Our Key Features</h2>
+            <p class="description">Discover what makes EduCraft the preferred choice for thousands of learners worldwide
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Expert Instructors</h3>
+                    <p>Learn from industry professionals with years of practical experience in their fields.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Interactive Learning</h3>
+                    <p>Engaging video lessons, quizzes, and hands-on projects to reinforce your learning.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Certification</h3>
+                    <p>Earn recognized certificates to showcase your skills to employers and clients.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Lifetime Access</h3>
+                    <p>Once enrolled, you get unlimited access to course materials and updates.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Learn on the go with our mobile-optimized platform and downloadable content.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Our dedicated support team is always ready to help with any questions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <p class="subheading" style="color: #ccc;">BY THE NUMBERS</p>
+            <h2 class="section-title" style="color: white;">Our Impact in Education</h2>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>100K+</h3>
+                    <p>Students Enrolled</p>
+                </div>
+
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>Courses Available</p>
+                </div>
+
+                <div class="stat-item">
+                    <h3>50+</h3>
+                    <p>Expert Instructors</p>
+                </div>
+
+                <div class="stat-item">
+                    <h3>95%</h3>
+                    <p>Satisfaction Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="team-container">
+            <p class="subheading">OUR TEAM</p>
+            <h2 class="section-title">Meet Our Expert Instructors</h2>
+            <p class="description">Passionate educators dedicated to your success</p>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://t4.ftcdn.net/jpg/02/46/83/37/360_F_246833765_fWqwf3kBte31BMKTApNqIuG0qbCbF7zk.jpg"
+                        alt="Sarah Johnson" class="instructor-image">
+
+                    <div class="member-info">
+                        <h3>Sarah Johnson</h3>
+                        <p>Lead Web Development Instructor</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <img src="https://media.istockphoto.com/id/1470444876/photo/positive-asian-teacher-man-smiling-writing-on-whiteboard-in-classroom.jpg?s=612x612&w=0&k=20&c=CPprn94m1p-BpZcSRbmB3kPV5-4nJdz2B-nR0a37j8s="
+                        alt="Michael Chen" class="instructor-image">
+
+                    <div class="member-info">
+                        <h3>Michael Chen</h3>
+                        <p>Data Science Specialist</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <img src="https://media.istockphoto.com/id/1442187007/photo/profile-picture-of-young-indian-woman-posing.jpg?s=170667a&w=0&k=20&c=44LW7IP2OfXfXfSuhFDbaalU0A5awCRm8R4op6idFzM="
+                        alt="Priya Patel" class="instructor-image">
+
+                    <div class="member-info">
+                        <h3>Priya Patel</h3>
+                        <p>Digital Marketing Expert</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <img src="https://img.freepik.com/free-photo/young-handsome-man-holding-notebooks-concept-e-learning-courses_1258-26588.jpg"
+                        alt="David Kim" class="instructor-image">
+
+                    <div class="member-info">
+                        <h3>David Kim</h3>
+                        <p>UX/UI Design Instructor</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btnwrapper">
+                <button class="btn primary" style="margin-top: 20px;" onclick="window.location.href='instructor.html'">More About Instructors </button>
+
+            </div>
+    </section>
+
+
+
+   <footer class="custom-footer">
+        <div class="footer-top">
+            <div class="footer-section brand">
+                <h2>EduCraft<span class="dot">.</span></h2>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="instructor.html">Mentors</a></li>
+                    <!-- <li><a href="#">Group</a></li> -->
+                    <li><a href="#testimonial">Testimonial</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Other</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html#team">Our Team</a></li>
+                    <li><a href="#courses">Popular Courses</a></li>
+                    <li><a href="about.html#features">Our Features</a></li>
+                    <li><a href="cart.html">Purchased courses</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact">
+                <p>
+                    <a href="tel:98765xxxxx">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+91 98765xxxxx</span>
+                    </a>
+                    <a href="mailto:sderty@gmail.com">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>sderty@gmail.com</span>
+                    </a>
+                    <a>
+                        <i class="fa-solid fa-map-pin"></i>
+                        <span>123 Education Street, Learning City, LC 56789</span>
+                    </a>
+                </p>
+                <!-- <p><i class="fa-solid fa-map-pin"></i> 925 Filbert Street Pennsylvania 18072</p>
+                <p><i class="fa-solid fa-phone"></i> +45 3411–4411</p>
+                <p><i class="fa-solid fa-envelope"></i> info@gmail.com</p> -->
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>©2025. All Rights Reserved</p>
+            <!-- <div class="footer-links">
+                <a href="#">Privacy policy</a>
+                <a href="#">Terms & conditions</a>
+                <a href="#">Distributed by ThemeWagon</a>
+            </div> -->
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - EduCraft</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .btn {
+            padding: 12px 30px;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn.primary {
+            background-color: darkslateblue;
+            color: white;
+        }
+
+        .btn.primary:hover {
+            background-color: white;
+            border: 1px solid darkslateblue;
+            color: darkslateblue;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: darkslateblue;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .subheading {
+            color: darkslateblue;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            line-height: 1.5;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        /* Contact Page Specific Styles */
+        .contact-hero {
+            background: linear-gradient(rgba(72, 61, 139, 0.8), rgba(72, 61, 139, 0.8)),
+                url('https://images.unsplash.com/photo-1587560699334-cc4ff634909a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 2%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            height: max-content;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px rgba(0.4, 0.4, 1, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            justify-content: space-evenly;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-card:hover,
+        .contact-form:hover {
+            transform: translateY(-10px);
+            transition: all 0.3s linear;
+            border: 1px solid darkslateblue;
+        }
+
+        .info-card h3 {
+            color: darkslateblue;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-icon {
+            font-size: 1.2rem;
+            color: darkslateblue;
+            margin-top: 3px;
+        }
+
+        .map-container {
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+     <nav class="navbar">
+        <!-- Hidden checkbox for toggling menu -->
+        <input type="checkbox" id="nav-toggle" aria-label="Toggle navigation menu" />
+
+        <div class="logo">
+            <img src="https://cdn2.iconfinder.com/data/icons/education-and-science-6/64/education_science_idea-512.png"
+                alt="EduCraft Logo" />
+            <a href="index.html" style="color: black;">EduCraft</a>
+        </div>
+
+        <label for="nav-toggle" class="hamburger" tabindex="0" aria-controls="nav-toggle" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="instructor.html">Instructors</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+
+        <div class="search-container">
+            <input type="text" placeholder="Search courses..." aria-label="Search courses" />
+        </div>
+
+        <!-- <div class="dropdown">
+            <select aria-label="Choose category">
+                <option value="">Categories</option>
+                <option value="development">Development</option>
+                <option value="design">Design</option>
+                <option value="marketing">Marketing</option>
+                <option value="business">Business</option>
+            </select>
+        </div> -->
+    </nav>
+
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+        <h1>Contact Us</h1>
+        <p class="description">We'd love to hear from you! Reach out with questions, feedback, or partnership
+            opportunities.</p>
+    </section>
+
+    <!-- Main Contact Section -->
+    <section class="contact-container">
+
+        <!-- Contact Information -->
+        <div class="contact-info">
+            <div class="info-card">
+                <h3>Contact Information</h3>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h4>Address</h4>
+                        <p>123 Education Street, Learning City, LC 56789</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+91 98765xxxxx</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>sderty@gmail.com</p>
+                    </div>
+                </div>
+
+                <!-- <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h4>Hours</h4>
+                        <p>Monday-Friday: 9am - 6pm<br>Saturday: 10am - 4pm<br>Sunday: Closed</p>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- <div class="info-card">
+                <h3>Frequently Asked Questions</h3>
+                <p>Check our <a href="#" style="color: darkslateblue; font-weight: 500;">FAQ page</a> for answers to common questions about courses, payments, and technical issues.</p>
+                <p style="margin-top: 15px;">For immediate assistance, you can also chat with our support team during business hours.</p>
+            </div> -->
+
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d481732.6611600526!2d72.5243588549025!3d19.389215779207824!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7aff23664d8fd%3A0xab9e569ecca0280b!2sQSpiders%20Vasai-Virar%20Mumbai!5e0!3m2!1sen!2sin!4v1749205743111!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <h2 style="color: darkslateblue; margin-bottom: 30px;">Send Us a Message</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+
+                <!-- <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject" required>
+                        <option value="" disabled selected>Select a subject</option>
+                        <option value="general">General Inquiry</option>
+                        <option value="technical">Technical Support</option>
+                        <option value="billing">Billing Question</option>
+                        <option value="feedback">Feedback/Suggestions</option>
+                        <option value="partnership">Partnership Opportunity</option>
+                    </select>
+                </div> -->
+
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" placeholder="Type your message here..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn primary">Send Message</button>
+            </form>
+        </div>
+
+    </section>
+    <footer class="custom-footer">
+        <div class="footer-top">
+            <div class="footer-section brand">
+                <h2>EduCraft<span class="dot">.</span></h2>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="instructor.html">Mentors</a></li>
+                    <!-- <li><a href="#">Group</a></li> -->
+                    <li><a href="#testimonial">Testimonial</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Other</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html#team">Our Team</a></li>
+                    <li><a href="#courses">Popular Courses</a></li>
+                    <li><a href="about.html#features">Our Features</a></li>
+                    <li><a href="cart.html">Purchased courses</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact">
+                <p>
+                    <a href="tel:98765xxxxx">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+91 98765xxxxx</span>
+                    </a>
+                    <a href="mailto:sderty@gmail.com">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>sderty@gmail.com</span>
+                    </a>
+                    <a>
+                        <i class="fa-solid fa-map-pin"></i>
+                        <span>123 Education Street, Learning City, LC 56789</span>
+                    </a>
+                </p>
+                <!-- <p><i class="fa-solid fa-map-pin"></i> 925 Filbert Street Pennsylvania 18072</p>
+                <p><i class="fa-solid fa-phone"></i> +45 3411–4411</p>
+                <p><i class="fa-solid fa-envelope"></i> info@gmail.com</p> -->
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>©2025. All Rights Reserved</p>
+            <!-- <div class="footer-links">
+                <a href="#">Privacy policy</a>
+                <a href="#">Terms & conditions</a>
+                <a href="#">Distributed by ThemeWagon</a>
+            </div> -->
+        </div>
+    </footer>
+</body>
+
+</html>
