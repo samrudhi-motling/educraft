@@ -4,17 +4,9 @@ Educraft is a clean, responsive static website built with HTML5, CSS3, and minim
 Live Demo
 ▶ https://educraft.vercel.app
 
-Key Pages
-✔ Homepage – Engaging hero section, featured courses, testimonials
-✔ About Us – Platform mission, vision, and values
-✔ Course Catalog – Organized listing of available courses
-✔ Instructors – Professional profiles with bios
-✔ Contact Page – Functional contact form with information
-✔ Cart – UI for course enrollment simulation
-
 Features
-Responsive design
-Clean, accessible UI/UX
-Fast-loading static pages
-Easy to customize
+1. Responsive design
+2. Clean, accessible UI/UX
+3. Fast-loading static pages
+4. Easy to customize
 
