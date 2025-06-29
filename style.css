@@ -108,6 +108,7 @@ nav.navbar {
     top: 0;
     z-index: 77;
     height: 10vh;
+    box-shadow: 0.1px 0.1px 4px rgb(136, 135, 135);
 }
 
 .logo {
